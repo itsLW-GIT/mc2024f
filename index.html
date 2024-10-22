@@ -1,86 +1,143 @@
-body {
-    background-color: #f8f9fa; /* 背景：淺灰色 */
-    color: #212529; /* 文字顏色：深灰色 */
-    font-family: 'Noto Serif JP', serif;
-}
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>作品集 Portfolio</title>
 
-.twenty {
-    border: 1px solid #343a40; /* 邊框：深灰 */
-    color: #343a40; /* 文字顏色：深灰 */
-    background-color: #ffffff; /* 白底 */
-    padding: 12px;
-    font-size: 16pt;
-    border-radius: 8px;
-}
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="./favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
 
-.twenty a {
-    color: #007bff; /* 強調色：藍色 */
-}
+  <style>
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+      font-family: 'Noto Sans TC', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-.twenty a:hover {
-    color: #0056b3; /* 深藍色 */
-    text-decoration: underline;
-}
+    .container-fluid {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.container-fluid {
-    width: 90%;
-    margin: auto;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 陰影增加層次感 */
-}
+    h1, h2 {
+      color: #6A4C9C;
+      margin-bottom: 20px;
+    }
 
-.hw12 {
-    border: 1px solid #dee2e6; /* 輕量邊框 */
-    border-radius: 8px;
-    padding: 16px;
-    background-color: #f1f3f5; /* 淺灰色背景 */
-}
+    a {
+      color: #6A4C9C;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #9F353A;
+    }
 
-.flipswitch {
-    background: #e9ecef; /* 背景：淺灰 */
-    border: 1px solid #adb5bd; /* 邊框：中灰 */
-    color: #495057; /* 文字：深灰 */
-}
+    .content-box {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
 
-.flipswitch:after {
-    background: #ffffff; /* 白色滑塊 */
-    color: #495057;
-}
+    .flipswitch {
+      appearance: none;
+      width: 100px;
+      height: 30px;
+      background-color: #ddd;
+      border-radius: 20px;
+      position: relative;
+      outline: none;
+      cursor: pointer;
+    }
+    .flipswitch:after {
+      content: "未完成";
+      position: absolute;
+      left: 5px;
+      top: 3px;
+      width: 45%;
+      height: 80%;
+      background-color: #fff;
+      border-radius: 20px;
+      text-align: center;
+      line-height: 24px;
+      transition: 0.3s;
+    }
+    .flipswitch:checked:after {
+      left: 50px;
+      content: "完成";
+    }
+  </style>
+</head>
 
-.flipswitch:checked:after {
-    background: #007bff; /* 強調藍 */
-    color: white;
-}
+<body>
+  <a href="https://tjhsieh.github.io/c/ca/mc2024f/" class="github-corner" aria-label="View source on Github">
+    <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#6A4C9C; color:#fff; position: absolute; top: 0; right: 0;">
+      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    </svg>
+  </a>
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 16px 0;
-    border-radius: 8px;
-    overflow: hidden;
-}
+  <div class="container-fluid">
+    <div class="content-box">
+      <h1>動態捕捉與虛擬網紅 113-1 作品集</h1>
+    </div>
 
-th, td {
-    border: 1px solid #dee2e6;
-    padding: 8px;
-    text-align: center;
-    background-color: #ffffff;
-}
+    <div class="row">
+      <div class="col-md-3 content-box text-center">
+        <p>作品集總分</p>
+        <hr>
+        <span style="font-size: 48pt;" id="myTotal">00</span> / 80
+        <hr>
+        <a href="https://tjhsieh.github.io/c/ca/mc2024f/hw/index.html" target="_blank">作業總表</a>
+      </div>
 
-a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
+      <div class="col-md-3 content-box text-center">
+        <img src="./me.jpg" class="img-fluid rounded" alt="大頭照">
+      </div>
 
-a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
+      <div class="col-md-6 content-box">
+        <ul>
+          <li>範例展示: <a href="https://tjhsieh.github.io/mc2024f/" target="_blank">點擊查看</a></li>
+          <li>範例下載: <a href="https://github.com/tjhsieh/mc2024f/" target="_blank">GitHub 下載</a></li>
+        </ul>
+        <hr>
+        <ul>
+          <li>使用 <a href="https://www.microsoft.com/zh-tw/microsoft-copilot" target="_blank">Copilot</a> 生成虛擬角色。</li>
+          <li>將大頭照命名為 `me.jpg` 並上傳至 GitHub。</li>
+          <li>設定 GitHub Pages 並檢查網頁顯示狀態。</li>
+        </ul>
+      </div>
+    </div>
 
-.github-corner svg {
-    fill: #343a40; /* 深灰 */
-    color: #007bff; /* 強調色 */
-}
-
+    <div class="row">
+      <div class="col-md-6 content-box">
+        <h2>作業01 (10%)</h2>
+        <p><a href="https://docs.google.com/presentation/d/11pX-6RIfJs8QXIu4cogX3p1lgdEx-ppW/edit#slide=id.p6" target="_blank">投影片連結</a></p>
+        <hr>
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th>分數</th><th>完成</th><th>配分</th><th>描述</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="5" id="myTotal1"></td>
+                <td><input type="checkbox" class="flipswitch" id="myCheckbox11" checked></td><td>2</td><td>Simple baseline - 影片長度 1 分鐘</td></tr>
+            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox12"></td><td>2</td><td>影片加字幕</td></tr>
+            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox13"></td><td>2</td><td>Copilot 插圖</td></tr>
+            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox14"></td><td>2</td><td>符合 Booth 模型</td></tr>
+            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox15"></td><td>2</td><td>OBS 直播 YouTube</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
