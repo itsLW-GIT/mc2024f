@@ -1,143 +1,282 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
 <head>
+  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>作品集 Portfolio</title>
 
+  <!-- D3, jquery -->
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" charset="utf-8"></script>
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- https://alexlenail.me/NN-SVG/about.html -->
   <link rel="icon" href="./favicon.svg"/>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200&display=swap');
+  
+    @font-face {
+      font-family: 'CircleFont';
+      src: url(CircleFont_v2.woff2);
+    }
 
-  <style>
     body {
-      background-color: #f5f5f5;
-      color: #333;
-      font-family: 'Noto Sans TC', sans-serif;
-      margin: 0;
-      padding: 0;
+      background-color: #F4F4F9;
+      color: #333333;
+      font-family: 'Noto Serif JP', 'CircleFont', serif;
     }
 
     .container-fluid {
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
+      width: 90%;
     }
 
-    h1, h2 {
-      color: #6A4C9C;
-      margin-bottom: 20px;
-    }
-
-    a {
-      color: #6A4C9C;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    a:hover {
-      color: #9F353A;
-    }
-
-    .content-box {
-      background-color: white;
+    .hw12 {
+      border: 1px solid #A9A9A9;
+      background-color: #FFFFFF;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
+    }
+
+    .toprow, .bottomrow {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+
+    .twenty {
+      padding: 16px;
+      font-size: 16pt;
+      color: #333333;
+    }
+
+    .twenty a {
+      color: #3498DB;
+      text-decoration: none;
+    }
+
+    .twenty a:hover {
+      color: #1ABC9C;
+      font-size: 16pt;
+    }
+
+    h1 {
+      color: #2C3E50;
+    }
+
+    svg {
+      border: 2px solid #A9A9A9;
+    }
+
+    path {
+      pointer-events: all;
+      fill: #f4f4f9;
+      stroke: #A9A9A9;
+      stroke-opacity: 0.95;
+      stroke-width: 1px;
+    }
+
+    .active circle {
+      stroke: #333333;
+      stroke-width: 2px;
+    }
+
+    svg g text {
+      fill: #333333;
+      font-size: 24pt;
+      text-anchor: middle;
+    }
+
+    img.withborder {
+      border: 1px solid #A9A9A9;
+      border-radius: 8px;
+    }
+
+    img:hover {
+      box-shadow: 0 0 8px #3498DB;
+      animation: happy 0.5s infinite;
+    }
+
+    @keyframes happy {
+      0% { transform: translateY(0px); }
+      25% { transform: translateY(-8px); }
+      50% { transform: translateY(0px); }
+      75% { transform: translateY(-4px); }
+      100% { transform: translateY(0px); }
+    }
+
+    table {
+      border-collapse: collapse;
+      border: 2px solid #A9A9A9;
+      font-size: 12pt;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    td, th {
+      border: 1px solid #A9A9A9;
+      padding: 8px;
     }
 
     .flipswitch {
-      appearance: none;
-      width: 100px;
-      height: 30px;
-      background-color: #ddd;
-      border-radius: 20px;
       position: relative;
-      outline: none;
+      background: white;
+      width: 120px;
+      height: 20px;
+      border-radius: 3px;
+      border: 1px solid #A9A9A9;
       cursor: pointer;
+      outline: none;
     }
+
     .flipswitch:after {
-      content: "未完成";
       position: absolute;
-      left: 5px;
-      top: 3px;
+      top: 2px;
+      left: 2%;
       width: 45%;
-      height: 80%;
-      background-color: #fff;
-      border-radius: 20px;
+      height: 90%;
+      background: #fff;
       text-align: center;
-      line-height: 24px;
-      transition: 0.3s;
+      line-height: 16px;
+      color: #3498DB;
+      border-radius: 3px;
+      border: 1px solid #3498DB;
+      content: "未完成";
+      transition: all 0.3s ease-in-out;
     }
+
     .flipswitch:checked:after {
-      left: 50px;
+      left: 53%;
       content: "完成";
+    }
+
+    a {
+      color: #3498DB;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #1ABC9C;
+      text-decoration: underline;
+    }
+
+    .github-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   </style>
 </head>
 
 <body>
-  <a href="https://tjhsieh.github.io/c/ca/mc2024f/" class="github-corner" aria-label="View source on Github">
-    <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#6A4C9C; color:#fff; position: absolute; top: 0; right: 0;">
-      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-    </svg>
-  </a>
 
-  <div class="container-fluid">
-    <div class="content-box">
+<a href="https://tjhsieh.github.io/c/ca/mc2024f/" class="github-corner" aria-label="View source on Github">
+  <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#3498DB; color:#fff;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="#f9eced" stroke="#6A4C9C" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="#f9eced" stroke="#6A4C9C" class="octo-body"></path>
+  </svg>
+</a>
+
+<div class="container-fluid">
+  <div class="row hw12 toprow bottomrow">
+    <div class="col-md-12 twenty">
       <h1>動態捕捉與虛擬網紅 113-1 作品集</h1>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="col-md-3 content-box text-center">
-        <p>作品集總分</p>
-        <hr>
-        <span style="font-size: 48pt;" id="myTotal">00</span> / 80
-        <hr>
-        <a href="https://tjhsieh.github.io/c/ca/mc2024f/hw/index.html" target="_blank">作業總表</a>
-      </div>
-
-      <div class="col-md-3 content-box text-center">
-        <img src="./me.jpg" class="img-fluid rounded" alt="大頭照">
-      </div>
-
-      <div class="col-md-6 content-box">
-        <ul>
-          <li>範例展示: <a href="https://tjhsieh.github.io/mc2024f/" target="_blank">點擊查看</a></li>
-          <li>範例下載: <a href="https://github.com/tjhsieh/mc2024f/" target="_blank">GitHub 下載</a></li>
-        </ul>
-        <hr>
-        <ul>
-          <li>使用 <a href="https://www.microsoft.com/zh-tw/microsoft-copilot" target="_blank">Copilot</a> 生成虛擬角色。</li>
-          <li>將大頭照命名為 `me.jpg` 並上傳至 GitHub。</li>
-          <li>設定 GitHub Pages 並檢查網頁顯示狀態。</li>
-        </ul>
-      </div>
+  <div class="row hw12 toprow bottomrow">
+    <div class="col-md-2 twenty">
+      <p>作品集總分 <hr><span style="font-size: 88pt;" id="myTotal">00</span> / 80</p>
+      <hr><a href="https://tjhsieh.github.io/c/ca/mc2024f/hw/index.html" target="_blank">作業總表</a>
     </div>
-
-    <div class="row">
-      <div class="col-md-6 content-box">
-        <h2>作業01 (10%)</h2>
-        <p><a href="https://docs.google.com/presentation/d/11pX-6RIfJs8QXIu4cogX3p1lgdEx-ppW/edit#slide=id.p6" target="_blank">投影片連結</a></p>
-        <hr>
-        <table class="table table-bordered text-center">
-          <thead>
-            <tr>
-              <th>分數</th><th>完成</th><th>配分</th><th>描述</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td rowspan="5" id="myTotal1"></td>
-                <td><input type="checkbox" class="flipswitch" id="myCheckbox11" checked></td><td>2</td><td>Simple baseline - 影片長度 1 分鐘</td></tr>
-            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox12"></td><td>2</td><td>影片加字幕</td></tr>
-            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox13"></td><td>2</td><td>Copilot 插圖</td></tr>
-            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox14"></td><td>2</td><td>符合 Booth 模型</td></tr>
-            <tr><td><input type="checkbox" class="flipswitch" id="myCheckbox15"></td><td>2</td><td>OBS 直播 YouTube</td></tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="col-md-3 twenty">
+      <img class="withborder" src="./me.jpg" height="256px">
+    </div>
+    <div class="col-md-7 twenty">
+            <p>
+        歡迎來到我的動態捕捉與虛擬網紅課程作品集網站。這裡展示了我在113-1學期中，針對該課程所完成的各項作業。作品集分數將持續更新，隨著作業完成度與得分的變動。
+      </p>
+      <p>
+        我希望透過這門課程，更加深入了解虛擬角色的創建、動態捕捉技術的應用，以及如何在這些技術上創造生動且具有吸引力的數位內容。
+      </p>
+      <p>
+        我的 GitHub Repo: <a href="https://github.com/yourgithub" target="_blank">https://github.com/yourgithub</a>
+      </p>
     </div>
   </div>
+
+  <!-- Homework entries -->
+  <div class="row hw12 toprow">
+    <div class="col-md-12 twenty">
+      <h2>作業項目</h2>
+    </div>
+  </div>
+
+  <div class="row hw12 bottomrow">
+    <div class="col-md-4 twenty">
+      <h3>作業一: 動態捕捉基礎</h3>
+      <p>描述：學習動態捕捉技術的基本概念與操作，並進行簡單的骨架模型追蹤與動作捕捉。</p>
+      <p>狀態：
+        <label class="flipswitch">
+          <input type="checkbox" id="hw1" name="hw1" class="flipswitch-checkbox">
+          <span class="flipswitch-slider"></span>
+        </label>
+      </p>
+    </div>
+
+    <div class="col-md-4 twenty">
+      <h3>作業二: 虛擬角色設計</h3>
+      <p>描述：運用設計軟體創建屬於自己的虛擬角色，並準備進行後續的動畫設計。</p>
+      <p>狀態：
+        <label class="flipswitch">
+          <input type="checkbox" id="hw2" name="hw2" class="flipswitch-checkbox">
+          <span class="flipswitch-slider"></span>
+        </label>
+      </p>
+    </div>
+
+    <div class="col-md-4 twenty">
+      <h3>作業三: 虛擬角色動態捕捉整合</h3>
+      <p>描述：將虛擬角色與動態捕捉數據整合，讓虛擬角色依照捕捉的數據進行動作演出。</p>
+      <p>狀態：
+        <label class="flipswitch">
+          <input type="checkbox" id="hw3" name="hw3" class="flipswitch-checkbox">
+          <span class="flipswitch-slider"></span>
+        </label>
+      </p>
+    </div>
+  </div>
+
+  <!-- More homeworks can be added in the same format -->
+
+  <div class="row hw12 toprow">
+    <div class="col-md-12 twenty">
+      <p>完整作業細節及評分標準，請參見作業總表。</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    // Simple script to update total score based on checked boxes
+    $('input[type="checkbox"]').change(function () {
+      var totalScore = 0;
+      if ($('#hw1').is(':checked')) totalScore += 20;
+      if ($('#hw2').is(':checked')) totalScore += 30;
+      if ($('#hw3').is(':checked')) totalScore += 30;
+
+      $('#myTotal').text(totalScore.toString().padStart(2, '0'));
+    });
+  });
+</script>
+
 </body>
 </html>
