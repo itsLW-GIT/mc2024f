@@ -47,21 +47,23 @@ body {
   }
 
 
-  .twenty {
-    border: 1px solid #f9eced;
-    color: #f9eced;
-    padding: 8px;
+.twenty {
+    border: 1px solid #EAEAEA;
+    color: #EAEAEA;
+    padding: 16px;
     font-size: 16pt;
-  }
+    background-color: #444444; /* 深色背景 */
+    transition: all 0.3s ease;
+}
 
-  .twenty a {
-    color:  yellow;
-  }
+.twenty a {
+    color: #FFDD57;
+}
 
-  .twenty a:hover {
-    color: #f9eced;
-    font-size:  16pt;
-  }
+.twenty a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
 
   svg {
     border: 2px solid rgb(159, 53, 58);
@@ -99,6 +101,8 @@ body {
       animation-name: happy;
       animation-duration: 0.5s;
       animation-iteration-count: infinite;
+      transform: scale(1.05);
+    transition: transform 0.3s ease;
   }
 
   @keyframes happy {
@@ -158,22 +162,25 @@ body {
 
   table {
     border-collapse: collapse;
-    border: 2px solid white; /* rgba(217,140,144,1) */
+ /*   border: 2px solid white; rgba(217,140,144,1) */
     font-size:  12pt;
     margin-left: auto;
     margin-right: auto;
     font-family: 'Noto Serif JP', serif;
+    border: 2px solid #EAEAEA;
+    background-color: #333333;
   }
 
-  td,  th {
-  border: 1px solid white;
-  padding: 2px 8px;
-  }
+ td, th {
+    border: 1px solid #EAEAEA;
+    padding: 8px;
+    color: #EAEAEA;
+}
 
   .flipswitch
   {
       position: relative;
-      background: white;
+     background: #444444;
       width: 120px;
       height: 20px;
       -webkit-appearance: initial;
@@ -184,7 +191,7 @@ body {
       font-family: Trebuchet, Arial, sans-serif;
       font-weight: bold;
       cursor:pointer;
-      border:1px solid #ddd;
+      border: 1px solid #888;
   }
   .flipswitch:after
   {
@@ -194,11 +201,11 @@ body {
       line-height:16px;
       width:45%;
       height:90%;
-      background:#fff;
+       background: #EAEAEA;
       box-sizing:border-box;
       text-align:center;
       transition: all 0.3s ease-in 0s; 
-      color:rgba(159,53,58,1);
+      color: #444444;
       border:#888 1px solid;
       border-radius:3px;
   }
